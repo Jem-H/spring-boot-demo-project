@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductsController {
 
-    private final ProductsService productsService;
+  private final ProductsService productsService;
 
-    @GetMapping("/products")
-    public ProductsResponse getProducts() {
-        return new ProductsResponse(productsService.getProducts());
-    }
+  @GetMapping("/products")
+  public ProductsResponse getProducts() {
+    return new ProductsResponse(productsService.getProducts());
+  }
 }
