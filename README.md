@@ -18,7 +18,7 @@ GET product list
 http://localhost:8080/products
 
 GET basket list
-http://localhost:8080/products
+http://localhost:8080/basket
 
 POST - Add basket item
 http://localhost:8080/basket
