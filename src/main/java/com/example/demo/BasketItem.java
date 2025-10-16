@@ -4,6 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class BasketItem {
   private String name;
   private int quantity;
