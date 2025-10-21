@@ -5,6 +5,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class BasketItem {
   private String name;
   private int quantity;
