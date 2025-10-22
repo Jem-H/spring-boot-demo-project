@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class BasketControllerTest {
 
-  @Mock BasketService basketService;
+  @Mock BasketService mockBasketService;
   @InjectMocks BasketController testee;
 
   private final Product product = new Product();
@@ -22,37 +22,37 @@ class BasketControllerTest {
 
   @Test
   void getBasket_whenEmpty() {
-    when(basketService.getBasketItems()).thenReturn(List.of());
+    when(mockBasketService.getBasketItems()).thenReturn(List.of());
     assertThat(testee.getBasket()).isEqualTo(new BasketResponse(List.of()));
   }
 
   @Test
   void getBasket_whenNotEmpty() {
-    when(basketService.getBasketItems()).thenReturn(List.of(basketItem));
+    when(mockBasketService.getBasketItems()).thenReturn(List.of(basketItem));
     assertThat(testee.getBasket()).isEqualTo(new BasketResponse(List.of(basketItem)));
   }
 
   @Test
   void addBasketItem() {
     testee.addBasketItem(basketItem);
-    when(basketService.getBasketItems()).thenReturn(List.of(basketItem));
-    verify(basketService).addBasketItem(basketItem);
+    when(mockBasketService.getBasketItems()).thenReturn(List.of(basketItem));
+    verify(mockBasketService).addBasketItem(basketItem);
     assertThat(testee.getBasket()).isEqualTo(new BasketResponse(List.of(basketItem)));
   }
 
   @Test
   void updateBasketQuantity() {
     testee.updateBasketQuantity(basketItem.getName(), basketItem.getQuantity() + 1);
-    verify(basketService).updateBasketQuantity(basketItem.getName(), basketItem.getQuantity() + 1);
-    when(basketService.getBasketItems()).thenReturn(List.of(updatedBasketItem));
+    verify(mockBasketService).updateBasketQuantity(basketItem.getName(), basketItem.getQuantity() + 1);
+    when(mockBasketService.getBasketItems()).thenReturn(List.of(updatedBasketItem));
     assertThat(testee.getBasket()).isEqualTo(new BasketResponse(List.of(updatedBasketItem)));
   }
 
   @Test
   void deleteBasketItem() {
     testee.clearBasket();
-    verify(basketService).clearBasket();
-    when(basketService.getBasketItems()).thenReturn(List.of());
+    verify(mockBasketService).clearBasket();
+    when(mockBasketService.getBasketItems()).thenReturn(List.of());
     assertThat(testee.getBasket()).isEqualTo(new BasketResponse(List.of()));
   }
 }
